@@ -50,7 +50,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active"><i
                                 class="fa fa-arrow-left"></i></a></li>                   
                 </ul>
-                    <ul class="nav navbar-nav navbar-right ">
+                    {% comment %} <ul class="nav navbar-nav navbar-right ">
                     {% if request.user.is_authenticated %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'auth_logout' %}">Hola {{user.username}}</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'auth_logout' %}">Logout</a></li>
@@ -62,7 +62,67 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                     {%endif%}
                     
-                    </ul>
+                    </ul> {% endcomment %}
+                    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                    <li class="dropdown order-1">
+                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">
+                        {% if user.is_authenticated %}
+                            Usuario  {{user.first_name}} {{user.last_name }}
+                        {% else%}
+                        Login
+                        {% endif %}
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-2">
+                            <li class="px-3 py-2">
+                                {% if user.is_authenticated %}
+                                    <div>
+                                        {% if user.is_superuser%}
+                                            <a href="">Crear Escuela</a>
+                                            <br>
+                                            <a href="">Crear Comuna</a>
+                                            <br>
+                                            <a href="">Crear Tipo Escuelas</a>
+                                            <br>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="">Listar Escuelas</a>
+                                            <br>
+                                        {% endif %}
+                                        {% if user.is_superuser is False%}
+                                        <a href="">Envia tu evaluacion</a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+
+                                <form class="form" action="{% url 'auth_login' %}" method='post'enctype="multipart/form-data">
+                                {% comment %} <form id="login-form" action="{% url 'principal:login' %}" method="post" enctype="multipart/form-data"> {% endcomment %}
+                                 {% csrf_token %}
+                                    {% if  user.is_anonymous %}
+                                        <div class="form-group">
+                                            <input id="emailInput" placeholder="Usuario" class="form-control form-control-sm" type="text" required="" name="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="" name="password">
+                                        </div> 
+                                    {% endif %}
+                                    <div class="form-group">
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'auth_logout' %}" class="btn btn-primary btn-block">Logout</a>
+                                        {% else %}
+                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            <a class="btn btn-primary btn-block" href="{% url 'registration_register' %}">Registrar</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group text-center">
+                                    {% comment %} {% if  user.is_anonymous%}
+                                        <small><a href="{% url 'password_reset' %}" >Olvidó su password?</a></small>
+                                    {% endif %}     {% endcomment %}
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

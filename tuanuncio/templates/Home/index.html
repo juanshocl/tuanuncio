@@ -15,38 +15,38 @@
                     <th>Donde Ubicarlos</th>
                     <th>Region</th>
                     <th>Comuna</th>
-                   
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>
-                    <strong>
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-instagram"></i></a>
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-whatsapp"></i></a>    
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-map-marker"></i></a>
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-mouse-pointer"></i>
-                        </a>
-                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                        <i class="fa fa-envelope-square"></i>
-                        </a>
-                    </strong>
-                    </td>
-                    <td>61</td>
-                    <td>
-                    Maipú
-                    </td>
-                </tr>
+                {% if object_list%} {% for adv in object_list %}
+                    <tr>
+                        <td>{{ adv.name }}</td>
+                        <td>{{ adv.Type_advertisement}}</td>
+                        <td>{{ adv.description}}</td>
+                        <td>
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-whatsapp"></i></a>    
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-map-marker"></i></a>
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-mouse-pointer"></i>
+                            </a>
+                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            <i class="fa fa-envelope-square"></i>
+                            </a>
+                        </td>
+                        <td>{{ adv.comuna }}</td>
+                        <td>{{ adv.comuna }}</td>
+                    </tr>
+                {% endfor %} {% else %}
+                <h1>No hay emprendimientos que listar asociados a su cuenta</h1>
+                {% endif %}
             </tbody>
+
         </table>
         <!-- End: Data Table -->
     <!-- End: Bold BS4 Footer Simple -->

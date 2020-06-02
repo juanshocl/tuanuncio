@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>HOLO</h1>
-{% endblock content %}
+<br>
+<div class="container">
+<div class="float-right  d-none">
+    <form class="form-inline ml-auto">
+      <div class="md-form my-0">
+        <input class="form-control" type="text" placeholder="Buscar" aria-label="Buscar">
+      </div>
+      <button href="#!" class="btn btn-outline-white btn-md my-0 ml-sm-2" type="submit">Buscar</button>
+    </form>
+ </div>   
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <th>Donde Ubicarlos</th>
+            <th>Region</th>
+            <th>Comuna</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list%} {% for adv in object_list %}
+        <tr>
+            <td>{{ adv.name }}</td>
+            <td>{{adv.Type_advertisement}}</td>
+            <td>{{ adv.description}}</td>
+            <td>{{ adv.comuna }}</td>
+            <td>{{ adv.comuna }}</td>
+            <td>{{ adv.comuna }}</td>
+            <td>
+                <a class="btn btn-primary" href="">Editar</a>
+                <a class="btn btn-danger" href="">Eliminar</a>
+                                {% comment %} <a class="btn btn-primary" href="{% url 'school_editar' colegio.Id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'school_delete' colegio.Id  %}">Eliminar</a> {% endcomment %}
+            </td>
+        </tr>
+        {% endfor %} {% else %}
+        <h1>No hay emprendimientos que listar asociados a su cuenta</h1>
+        <a class="btn btn-primary" href="{% url 'pubNuevo'  %}">Nuevo</a>
+        {% endif %}
+    </tbody>
+</table>
+</div>{% endblock content %}
 
 

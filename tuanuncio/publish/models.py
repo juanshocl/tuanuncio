@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 
@@ -72,10 +73,14 @@ class subscription_plan(models.Model):
 
 class advertisement(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    User = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     name = models.CharField(default = None, max_length=50)
     Type_advertisement = models.ForeignKey(typeA, on_delete=models.CASCADE, default=None)
     description  = models.CharField(max_length=200, default=None)    
-    Social_network = models.ManyToManyField(social_networks, default=None)
+    Userfacebook = models.CharField(default = None, max_length=50)
+    UserInstagram = models.CharField(default = None, max_length=50)
+    UserTwitter = models.CharField(default = None, max_length=50)
+    # Social_network = models.ManyToManyField(social_networks, default=None)
     comuna = models.ForeignKey(comuna, on_delete=models.CASCADE, default = None)
     #phones = models.ManyToManyField(phones, default=None)
     whatsapp = models.CharField(max_length=11, default=None)
@@ -89,7 +94,7 @@ class advertisement(models.Model):
     #logo  = models.ImageField(upload_to='static/img/logo', default=None)
     incorporation_date = models.DateField(auto_now=True)
     #subscription_type = models.ForeignKey(subscription_plan, on_delete=models.CASCADE, default=None)
-    state = models.BooleanField(default=True)
+    state = models.BooleanField(default=False)
     #includes_maps  = models.BooleanField(default=False)
     #credits_id     = models.ForeignKey(credits, on_delete=models.CASCADE, default=None)
     #price_from = models.IntegerField(default=0)

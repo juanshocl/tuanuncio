@@ -10,6 +10,10 @@ from publish.models import advertisement
 #     template_name = 'home/index.html'
 
 
-def index(request):
-    context ={}
-    return render(request,'home/index.html', context)
+# def index(request):
+#     context ={}
+#     return render(request,'home/index.html', context)
+
+class index(ListView):
+    model = advertisement
+    template_name = 'home/index.html'
