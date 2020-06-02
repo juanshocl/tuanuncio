@@ -1,11 +1,25 @@
 from django.db import models
-#from phonenumber_field import PhoneNumberField
-#from apps.evaluate.models import Ratings
+
+
 
 import uuid
 
 # Create your models here.
 
+class region(models.Model):
+    Codregion = models.CharField(max_length=2, default=None, primary_key=True)
+    RegionName = models.CharField(max_length=50, default=None)
+    
+    def __str__(self):
+        return self.RegionName
+    
+class comuna(models.Model):
+    CodComuna = models.IntegerField(primary_key=True, default=None)
+    Reg = models.ForeignKey(region, on_delete=models.CASCADE)
+    ComunaName = models.CharField(max_length=50, default=None)
+
+    def __str__(self):
+        return self.ComunaName
 class NameSocialNetworks(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     NameDescriptions = models.CharField(max_length=50, default=None)
@@ -60,27 +74,26 @@ class advertisement(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(default = None, max_length=50)
     Type_advertisement = models.ForeignKey(typeA, on_delete=models.CASCADE, default=None)
+    description  = models.CharField(max_length=200, default=None)    
     Social_network = models.ManyToManyField(social_networks, default=None)
-    phones = models.ManyToManyField(phones, default=None)
+    comuna = models.ForeignKey(comuna, on_delete=models.CASCADE, default = None)
+    #phones = models.ManyToManyField(phones, default=None)
+    whatsapp = models.CharField(max_length=11, default=None)
     show_phones = models.BooleanField(default=False)
-    #PhoneNumberField(null=False, blank=False, unique=True)
     email = models.EmailField(max_length=254, default=None)                
     url_website = models.URLField(max_length=200, default=None)
     address = models.CharField(max_length=200, default=None)
-    latitude_longitude = models.CharField(max_length=200, default=None)
+    #latitude_longitude = models.CharField(max_length=200, default=None)
     show_adress = models.BooleanField(default=False)
-    description  = models.CharField(max_length=200, default=None)    
-    image = models.ImageField(upload_to='static/img', default=None)
-    logo  = models.ImageField(upload_to='static/img/logo', default=None)
+    #image = models.ImageField(upload_to='static/img', default=None)
+    #logo  = models.ImageField(upload_to='static/img/logo', default=None)
     incorporation_date = models.DateField(auto_now=True)
-    subscription_type = models.ForeignKey(subscription_plan, on_delete=models.CASCADE, default=None)
+    #subscription_type = models.ForeignKey(subscription_plan, on_delete=models.CASCADE, default=None)
     state = models.BooleanField(default=True)
-    includes_maps  = models.BooleanField(default=False)
-    credits_id     = models.ForeignKey(credits, on_delete=models.CASCADE, default=None)
-    # open_from = models.IntegerField(choices=HOURS, default=None)
-    # open_to = models.IntegerField(choices=HOURS, default=None)
-    price_from = models.IntegerField(default=0)
-    price_to = models.IntegerField(default=0) 
+    #includes_maps  = models.BooleanField(default=False)
+    #credits_id     = models.ForeignKey(credits, on_delete=models.CASCADE, default=None)
+    #price_from = models.IntegerField(default=0)
+    #price_to = models.IntegerField(default=0) 
 
     def __str__(self):
         return self.name
