@@ -1,70 +1,21 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static%}
+{% block content %}
 
-<html>
 
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Anuncios</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.min.css' %} ">
-</head>
-
-<body>
-    <!-- Start: Nav-center-custom -->
-    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark">
-        <div class="container-fluid"><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
-                    class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav flex-grow-1 justify-content-between">
-                    <li class="nav-item" role="presentation"><a class="nav-link active"><i
-                                class="fa fa-arrow-right"></i></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link scroll" href="#top"
-                            style="font-family: ABeeZee, sans-serif;">Inicio</a></li>
-                    {% comment %} <li class="nav-item" role="presentation"><a class="nav-link scroll" href="#team" target="_top"
-                            style="font-family: ABeeZee, sans-serif;">Team</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link scroll" href="#services"
-                            style="font-family: ABeeZee, sans-serif;">Services</a></li> {% endcomment %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Comuna
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                            style="font-family: ABeeZee, sans-serif;">Contacto</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Login</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Registrate</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active"><i
-                                class="fa fa-arrow-left"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End: Nav-center-custom -->
-    <div class="container">
         <!-- Start: Data Table -->
-        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        {% comment %} <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+         {% endcomment %}
+         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Descripcion</th>
+                    <th>Donde Ubicarlos</th>
+                    <th>Region</th>
+                    <th>Comuna</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -72,39 +23,33 @@
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
                     <td>Edinburgh</td>
+                    <td>
+                    <strong>
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-whatsapp"></i></a>    
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-map-marker"></i></a>
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-globe"></i>
+                        </a>
+                    <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        <i class="fa fa-envelope-square"></i>
+                        </a>
+                    </strong>
+                    </td>
                     <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
+                    <td>
+                    Maipú
+                    </td>
                 </tr>
             </tbody>
         </table>
         <!-- End: Data Table -->
-    </div>
-    <!-- Start: Bold BS4 Footer Simple -->
-    <footer id="myFooter" style="padding:0px;">
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-12">
-                    <ul class="list-unstyled">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Links</a></li>
-                    </ul>
-                    <p class="footer-copyright">© 2016 Copyright Text ~ Designed By &nbsp;<a href="#">Juanshocl</a></p>
-                </div>
-                <div class="col footer-social"><a href="#" class="social-icons"><i class="fa fa-facebook"></i></a><a
-                        href="#" class="social-icons"><i class="fa fa-google-plus"></i></a><a href="#"
-                        class="social-icons"><i class="fa fa-twitter"></i></a><a href="#" class="social-icons"><i
-                            class="fa fa-linkedin"></i></a></div>
-            </div>
-        </div>
-    </footer>
     <!-- End: Bold BS4 Footer Simple -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-</body>
 
-</html>
+{% endblock content %}
+
