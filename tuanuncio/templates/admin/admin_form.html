@@ -1,9 +1,27 @@
-{% extends "generic.html" %} {% block content %}
-    <br>
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
 <div class="container">
     <form method='post' enctype="multipart/form-data" >
-        {% csrf_token %} {{form.as_p}}
-        <button type="submit" onClick="alert('Almacenado correctamente');">Guardar</button>
+        {% csrf_token %} 
+        <input type="hidden" name="User" class="form-control" id="id_User" value="{{user.id}}" readonly>
+        {{form.User|as_crispy_field}}
+        {{form.name|as_crispy_field}}
+        {{form.Type_advertisement|as_crispy_field}}
+        {{form.description|as_crispy_field}}
+        {{form.comuna|as_crispy_field}}
+        {{form.whatsapp|as_crispy_field}}
+        {{form.show_phones|as_crispy_field}}
+        {{form.email|as_crispy_field}}
+        {{form.url_website|as_crispy_field}}
+        {{form.address|as_crispy_field}}
+        {{form.show_adress|as_crispy_field}}
+        {{form.Userfacebook|as_crispy_field}}
+        {{form.UserInstagram|as_crispy_field}}
+        {{form.UserTwitter|as_crispy_field}}
+        {{form.state|as_crispy_field}}
+        <button type="submit">Guardar</button>
     </form>
 </div>
 

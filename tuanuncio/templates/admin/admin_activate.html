@@ -3,7 +3,8 @@
 <div class="container">
     <form method='post' enctype="multipart/form-data">
         {% csrf_token %} 
-        <h3>¿Desea eliminar el registro de {{object.Name}}?</h3>
+        <h3>¿Desea activar el registro {{object.name}}?</h3>
+        <input type="hidden" name="state" class="form-control" id="state" value="True" readonly>
         <button class="btn btn-danger" type="submit">Si</button>
         <a class="btn btn-primary" href="{% url 'admList'%}">Cancelar</a>
     </form>

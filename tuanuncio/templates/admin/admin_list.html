@@ -1,4 +1,6 @@
-{% extends "generic.html" %} {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 <br>
 <div class="container">
 <div class="float-right  d-none">
@@ -12,51 +14,43 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <td>Nombre</td>
-            <td>Evaluación</td>
-            <td>Dirección</td>
-            <td>Comuna</td>
-            <td>Telefono</td>
-            <td>Tipo</td>
-            <td>Acciones</td>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <th>Region</th>
+            <th>Comuna</th>
+            <th>Estado</th>
+            <th>Accion</th>
         </tr>
     </thead>
     <tbody>
-        {% if data%} {% for colegio in data %}
+        {% if object_list%}
+         {% for adv in object_list %}
         <tr>
-            <td>{{ colegio.Name }}</td>
+            <td>{{ adv.name }}</td>
+            <td>{{ adv.Type_advertisement}}</td>
+            <td>{{ adv.description}}</td>
+            <td>{{ adv.comuna.Reg }}</td>
+            <td>{{ adv.comuna }}</td>
+                {% if adv.state%}
+                    <td>Activo</td>
+                {% else%}
+                    <td>Pendiente</td>
+                {% endif %}
             <td>
-                {% for i in view.loop_range %} 
-                {% if i <= colegio.Score %} 
-                    <i class="icon-star"></i>
-                    {% else %}
-                        <i class="icon-star-empty"></i> 
-                    {% endif %}
-                {% endfor %}
-            </td>
-            <td>{{ colegio.Address}}</td>
-            <td>{{ colegio.State_Province }}</td>
-            <td>{{ colegio.Phone }}</td>
-            <td>{{ colegio.Type }}</td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'school_editar' colegio.Id %}">Editar</a>
-                <a class="btn btn-danger" href="{% url 'school_delete' colegio.Id  %}">Eliminar</a>
+                {% if adv.state%}
+                    <a class="btn btn-danger" href="{% url 'adminActivar' adv.id  %}">Desactivar</a>
+                {% else%}
+                    <a class="btn btn-primary" href="{% url 'adminActivar' adv.id  %}">Activar</a>
+                {% endif %}
+                <a class="btn btn-primary" href="{% url 'adminUpdate' adv.id  %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'adminDelete' adv.id  %}">Eliminar</a>
             </td>
         </tr>
         {% endfor %} {% else %}
-        <h1>No hay registros de escuelas</h1>
+        <h1>No hay emprendimientos que listar asociados a su cuenta</h1>
+        <a class="btn btn-primary" href="{% url 'adminCreate'  %}">Nuevo</a>
         {% endif %}
     </tbody>
 </table>
-            {% comment %} <div class="pagination ">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary ">Anterior</a>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Siguiente</a>
-                    {% endif %}
-                </span>
-            </div> {% endcomment %}
-</div>
- {% endblock%}
+</div>{% endblock content %}

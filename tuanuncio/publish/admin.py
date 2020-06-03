@@ -7,22 +7,23 @@ from publish.models import advertisement, region, comuna, NameSocialNetworks, so
 
 @admin.register(advertisement)
 class advertisementAdmin(admin.ModelAdmin):
-    list_display = ()
-    # list_display = (
-    #         'id',
-    #         'User',
-    #         'name',
-    #         'Type_advertisement',
-    #         'description',
-    #         'Social_network',
-    #         'comuna',
-    #         'whatsapp',
-    #         'show_phones',
-    #         'email',
-    #         'url_website',
-    #         'address',
-    #         'show_adress',
-    #         'state')
+    #list_display = ()
+    list_display = ('User', 
+               'name',
+               'id',
+               'Type_advertisement',
+               'description',
+               'comuna',
+               'whatsapp',
+               'show_phones',
+               'email',
+               'url_website',
+               'address',
+               'show_adress', 
+               'Userfacebook',
+               'UserInstagram',
+               'UserTwitter',
+               'state')
 
 @admin.register(region)
 class regionAdmin(admin.ModelAdmin):

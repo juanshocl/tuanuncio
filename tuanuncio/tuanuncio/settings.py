@@ -146,8 +146,8 @@ REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/publish/'
-
+LOGIN_REDIRECT_URL = '/validation/'
+LOGOUT_REDIRECT_URL = 'index'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

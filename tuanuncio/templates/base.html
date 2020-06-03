@@ -33,19 +33,18 @@
                             style="font-family: ABeeZee, sans-serif;">Team</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link scroll" href="#services"
                             style="font-family: ABeeZee, sans-serif;">Services</a></li> {% endcomment %}
-                    <li class="nav-item dropdown">
+                    {% comment %} <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Comuna
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
                             <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+
                         </div>
-                    </li> 
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                    </li>  {% endcomment %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="mailto:maipuanuncio@gmail.com?subject=Quisiera%20publicar%20con%20ustedes"
                             style="font-family: ABeeZee, sans-serif;">Contacto</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active"><i
                                 class="fa fa-arrow-left"></i></a></li>                   
@@ -68,7 +67,7 @@
                     <li class="dropdown order-1">
                         <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">
                         {% if user.is_authenticated %}
-                            Usuario  {{user.first_name}} {{user.last_name }}
+                            Usuario : {{user.username }}{% comment %} Usuario  {{user.first_name}} {{user.last_name }} {% endcomment %}
                         {% else%}
                         Login
                         {% endif %}
@@ -78,19 +77,18 @@
                                 {% if user.is_authenticated %}
                                     <div>
                                         {% if user.is_superuser%}
-                                            <a href="">Crear Escuela</a>
-                                            <br>
-                                            <a href="">Crear Comuna</a>
-                                            <br>
-                                            <a href="">Crear Tipo Escuelas</a>
-                                            <br>
                                             <div class="dropdown-divider"></div>
-                                            <a href="">Listar Escuelas</a>
+                                            <a href="{% url 'adminCreate' %}">Crear Emprendimiento</a>
+                                            <a href="{% url 'admList' %}">Listar Emprendimientos</a>
+                                            <a href="{% url 'comunas' %}">Cargar Comunas</a>
+                                            <a href="{% url 'regiones' %}">Cargar Regiones</a>
                                             <br>
-                                        {% endif %}
-                                        {% if user.is_superuser is False%}
-                                        <a href="">Envia tu evaluacion</a>
-                                        {% endif %}
+                                        {% else %}
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{% url 'pubList' %}">Mis Emprendimientos</a>
+                                            <br>
+                                        {%endif%}
+
                                     </div>
                                 {% endif %}
 
@@ -140,18 +138,18 @@
                 <div class="col-12">
                     <ul class="list-unstyled">
                         {% comment %} <li><a href="#">About Us</a></li> {% endcomment %}
-                        <li><a href="#">Contactanos</a></li>
+                        <li><a href="mailto:maipuanuncio@gmail.com?subject=Quisiera%20publicar%20con%20ustedes">Contactanos</a></li>
                         <li><a href="#">Terms</a></li>
                         {% comment %} <li><a href="#">Links</a></li> {% endcomment %}
                     </ul>
-                    <p class="footer-copyright">© 2016 Copyright @maipuanuncio ~ Designed By &nbsp;<a href="#">Juanshocl</a></p>
+                    <p class="footer-copyright">© 2016 Copyright @maipuanuncio ~ Designed By &nbsp;<a href="https://bit.ly/33HsRQ8">Juanshocl</a></p>
                 </div>
                 <div class="col footer-social">
-                <a href="#" class="social-icons">
+                <a href="https://www.facebook.com/maipuanuncio" target="_blank"  class="social-icons">
                 <i class="fa fa-facebook"></i></a>
                 {% comment %} <a href="#" class="social-icons">
                 <i class="fa fa-google-plus"></i></a> {% endcomment %}
-                <a href="#" class="social-icons">
+                <a href="https://twitter.com/maipuanuncio" target="_blank"  class="social-icons">
                 <i class="fa fa-twitter"></i></a>
                 {% comment %} <a href="#" class="social-icons">
                 <i class="fa fa-linkedin"></i></a></div> {% endcomment %}

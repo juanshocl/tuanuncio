@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from publish.models import advertisement
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django import forms
 from django.urls import reverse_lazy
@@ -10,29 +10,43 @@ class pubList(ListView):
      model = advertisement
      template_name = 'publish/publish.html'
 
-     def get_context_data(self, **kwargs):
-     context = super(pubList,self).get_context_data(**kwargs)
-     adv = advertisement.objects.filter(User = self.user)
-     escuelas = School.objects.all().order_by('Name')
-     data = []
-     for escuela in escuelas:
-          promedio = Ratings.objects.filter(Schools=escuela.Id).aggregate(Avg('Score'))['Score__avg']
-          dic = {
-          'Id': escuela.Id,
-          'Name' : escuela.Name,
-          'Score': promedio,
-          'ImageMD':escuela.ImageMD, 
-          'ImageProfile':escuela.ImageProfile,
-          'Address':escuela.Address,
-          'State_Province':escuela.State_Province,
-          'Phone':escuela.Phone, 
-          'Type':escuela.Type,
-          'Review':escuela.Review,
-     }
-          data.append(dic)
+     def get_queryset(self):
+          queryset = super(pubList, self).get_queryset()
+          queryset = queryset.filter(User=self.request.user)
 
-     context['data'] = data
-     return context
+          return queryset
+
+# def List(request):
+#      #queryset = super(pubList, self).get_queryset()
+#      #queryset = advertisement.objects.filter(User=request.user)[0]
+#      #queryset = advertisement.objects.filter(User=request.user)#advertisement.objects.filter(User=request.user)[0]
+#      # data = []
+#      # for i in queryset:
+#      #      dic = {
+#      #           'id': i.id,
+#      #           'User': i.User,
+#      #           'name': i.name,
+#      #           'Type_advertisement': i.Type_advertisement,
+#      #           'description': i.description,
+#      #           'Userfacebook': i.Userfacebook,
+#      #           'UserInstagram': i.UserInstagram,
+#      #           'UserTwitter': i.UserTwitter,
+#      #           'comuna': i.comuna,
+#      #           'whatsapp': i.whatsapp,
+#      #           'show_phones': i.show_phones,
+#      #           'email': i.email,
+#      #           'url_website': i.url_website,
+#      #           'address': i.address,
+#      #           'show_adress': i.show_adress,
+#      #           'incorporation_date': i.incorporation_date,
+#      #           'state': i.state,
+#      #           }
+#      #      data.append(dic)
+#      #      con['data'] = data
+#      if request.user.is_superuser:
+#           return(redirect('admList'))
+#      else:
+#           return(redirect('pubList'))
 
 # class advCreate(CreateView):
 #     model = advertisement
@@ -42,7 +56,6 @@ class pubList(ListView):
 
 class pubCreate(CreateView):
      model = advertisement
-     #form_class = SchoolForm
      fields = ['User', 
                'name',
                'Type_advertisement',
@@ -57,27 +70,30 @@ class pubCreate(CreateView):
                'Userfacebook',
                'UserInstagram',
                'UserTwitter']
-     # labels = {
-     #           'User': 'Usuario',
-     #           'name': 'Nombre',
-     #           'Type_advertisement': 'Categoria',
-     #           'description': 'Descripcion',
-     #           'comuna': 'Comuna' ,
-     #           'whatsapp': 'WhatsApp',
-     #           'show_phones': '¿Quieres Mostrar tu Telefono?',
-     #           'email': 'Email' ,
-     #           'url_website': 'Sitio Web',
-     #           'address': 'Direccion',
-     #           'show_adress' : '¿Mostrar?' , 
-     #           'Userfacebook': 'Usuario Facebook',
-     #           'UserInstagram': 'Usuario Instagram',
-     #           'UserTwitter': 'Usuario Twitter'
-     #           }
-     # widgets = {
-     #        #'User': forms.TextInput(attrs={'class':'form-control'}),
-     #        #'Score': forms.Select(attrs={'class':'form-control'}),
-     #        'Score': forms.Select(attrs={'class': 'form-control'}),
-     #        'Schools': forms.Select(attrs={'class':'form-control'}),
-     #    }
+
      template_name = 'publish/publish_form.html'
      success_url = reverse_lazy('pubList')
+
+class pubUpdate(UpdateView):
+     model = advertisement
+     fields = ['User', 
+               'name',
+               'Type_advertisement',
+               'description',
+               'comuna',
+               'whatsapp',
+               'show_phones',
+               'email',
+               'url_website',
+               'address',
+               'show_adress', 
+               'Userfacebook',
+               'UserInstagram',
+               'UserTwitter']
+     template_name = 'publish/publish_form.html'
+     success_url = reverse_lazy('pubList')
+     
+class pubDelete(DeleteView):
+     model = advertisement
+     template_name  = 'publish/publish_delete.html'
+     success_url  = reverse_lazy('pubList')

@@ -20,27 +20,42 @@
             <tbody>
                 {% if object_list%} {% for adv in object_list %}
                     <tr>
+                    {% if adv.state%}
                         <td>{{ adv.name }}</td>
                         <td>{{ adv.Type_advertisement}}</td>
                         <td>{{ adv.description}}</td>
                         <td>
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        {%if adv.UserInstagram%}
+                        <a href="https://www.instagram.com/{{adv.UserInstagram}}/" target="_blank" class="social-icons">
                             <i class="fa fa-instagram"></i></a>
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
-                            <i class="fa fa-whatsapp"></i></a>    
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        {% endif %}
+                        {%if adv.whatsapp%}
+                        <a href="https://wa.me/{{adv.whatsapp}}?text=Hola%20Te%20escribo%20desde%20tuanuncio.cl" target="_blank" class="social-icons">
+                            <i class="fa fa-whatsapp"></i></a> 
+                        {%endif%}
+                        {%if adv.Userfacebook%}   
+                        <a href="https://www.facebook.com/{{adv.Userfacebook}}" target="_blank" class="social-icons">
                             <i class="fa fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        {%endif%}
+                        {% comment %} {%if adv.address%}
+                        <a href="#" target="_blank" class="social-icons">
                             <i class="fa fa-map-marker"></i></a>
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                        {%endif%} {% endcomment %}
+                            {%if adv.url_website%}
+                        <a href="{{url_website}}" target="_blank" class="social-icons">
                             <i class="fa fa-mouse-pointer"></i>
                             </a>
-                        <a href="https://www.instagram.com/maipuanuncio/" target="_blank" class="social-icons">
+                            {%endif%}
+                            {%if adv.email%}
+                        <a href="mailto:{{adv.email}}?subject=Aviso%20en%20tuanuncio.cl%20?body=Hola" target="_blank" class="social-icons">
                             <i class="fa fa-envelope-square"></i>
                             </a>
+                            {%endif%}
+
                         </td>
                         <td>{{ adv.comuna }}</td>
                         <td>{{ adv.comuna }}</td>
+                        {% endif %}
                     </tr>
                 {% endfor %} {% else %}
                 <h1>No hay emprendimientos que listar asociados a su cuenta</h1>
