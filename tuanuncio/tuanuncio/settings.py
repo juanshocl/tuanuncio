@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tuanuncio.urls'
@@ -134,7 +135,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -158,3 +158,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
