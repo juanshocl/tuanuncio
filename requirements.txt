@@ -6,7 +6,7 @@ importlib-metadata==1.6.0
 path==14.0.1
 Pillow==7.1.2
 pytz==2020.1
-sqlparse==0.3.1
+sqlparse==0.4.4
 Unipath==1.1
 whitenoise==5.1.0
 zipp==3.1.0
